@@ -8,7 +8,7 @@ export const VehicleActions = {
       actionType: "gathering_vehicle_list"
     });
     axios
-      .get("http://tc-dmv.azurewebsites.net/api/People/GetAll?") //http://tc-dmv.azurewebsites.net
+      .get("http://localhost:44322/api/People/GetAll?") //http://tc-dmv.azurewebsites.net
       .then(res => {
         Dispatcher.dispatch({
           actionType: "vehicle_list_success",
