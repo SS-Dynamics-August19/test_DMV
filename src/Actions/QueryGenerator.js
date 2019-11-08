@@ -1,5 +1,4 @@
-
-class QueryGenerator {
+export default class QueryGenerator {
     /** Generates an HTTP query string for the team shared MS Dynamics, based on the input parameters.
      * Will return every record in the table.
      * 
