@@ -8,7 +8,7 @@ export const ApplicationActions = {
       actionType: "gathering_application_list"
     });
     axios
-      .get("http://tc-dmv.azurewebsites.net/api/People/GetAll?") //http://tc-dmv.azurewebsites.net
+      .get("http://localhost:44322/api/People/GetAll?") //http://tc-dmv.azurewebsites.net
       .then(res => {
         Dispatcher.dispatch({
           actionType: "application_list_success",
@@ -86,4 +86,3 @@ export const ApplicationActions = {
       });
   }
 };
-

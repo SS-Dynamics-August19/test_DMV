@@ -38,19 +38,9 @@ class StoreForVehicles extends EventEmitter {
   emitChange() {
     this.emit(CHANGE);
   }
-  getAll() {
-    return _vehicles.allVehicles;
+  getData() {
+    return _vehicles;
   }
-  newVehicle() {
-    return _vehicles.creationStatus;
-  }
-  updateVehicle() {
-    return _vehicles.updateStatus;
-  }
-  deleteVehicle() {
-    return _vehicles.deleteStatus;
-  }
-
   resetReadState(section) {
     section.pending = false;
     section.success = false;

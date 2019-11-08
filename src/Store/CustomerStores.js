@@ -38,19 +38,9 @@ class StoreForCustomers extends EventEmitter {
   emitChange() {
     this.emit(CHANGE);
   }
-  getAll() {
-    return _customers.allCustomers;
+  getData() {
+    return _customers;
   }
-  newCustomer() {
-    return _customers.creationStatus;
-  }
-  updateCustomer() {
-    return _customers.updateStatus;
-  }
-  deleteCustomer() {
-    return _customers.deleteStatus;
-  }
-
   resetReadState(section) {
     section.pending = false;
     section.success = false;

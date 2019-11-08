@@ -4,10 +4,9 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./Constant/Home";
 import { Header } from "./Constant/Header";
-import { People } from "../oldies/People";
-import { Creator } from "../oldies/Person/Creator";
-import { Application } from "./Create/CreateApplication";
-import * as Store from "../Store/CustomerStores";
+import { CreateApplication } from "./Create/CreateApplication";
+import { ForCustomers } from "../Store/CustomerStores";
+import { CreateCustomer } from "./Create/CreateCustomer";
 
 export class App extends React.Component {
   constructor(props) {
@@ -28,19 +27,19 @@ export class App extends React.Component {
         <Route
           path="/Applications"
           render={props => (
-            <Application allApplications={this.state.customers} />
+            <CreateApplication {...props} applicationsData={this.state.applications} />
           )}
         />
         <Route
           path="/Customers"
           render={props => (
-            <People  listOfPeople={this.state.listOfPeople} />
+            <CreateCustomer {...props} customersData={this.state.customers} />
           )}
         />
         <Route
           path="/Vehicles"
           render={props => (
-            <Creator {...props} creationStatus={this.state.creationStatus} />
+            <CreateVehicle {...props} vehiclesData={this.state.vehicles} />
           )}
         />
         <Switch />
@@ -48,27 +47,25 @@ export class App extends React.Component {
     );
   }
 
-  //   componentDidMount() {
-  //     Store.ForPeople.addChangeListener(this._allPeople.bind(this));
-  //     Store.ForSearcher.addChangeListener(this._searchedFor.bind(this));
-  //     Store.ForCreator.addChangeListener(this._newAccount.bind(this));
-  //   }
+  componentDidMount() {
+    ApplicationStore.addChangeListener(this._getApplicationData.bind(this));
+    CustomerStore.addChangeListener(this._getCustomerData.bind(this));
+    VehicleStore.addChangeListener(this._getVehicleData.bind(this));
+  }
 
-  //   componentWillUnmount() {
-  //     Store.ForPeople.removeChangeListener(this._allPeople.bind(this));
-  //     Store.ForSearcher.removeChangeListener(this._searchedFor.bind(this));
-  //     Store.ForCreator.removeChangeListener(this._newAccount.bind(this));
-  //   }
+  componentWillUnmount() {
+    ApplicationStore.removeChangeListener(this._getApplicationData.bind(this));
+    CustomerStore.removeChangeListener(this._getCustomerData.bind(this));
+    VehicleStore.removeChangeListener(this._getVehicleData.bind(this));
+  }
 
-  //   _allPeople() {
-  //     this.setState({ listOfPeople: Store.ForPeople.allPpl() });
-  //   }
-
-  //   _searchedFor() {
-  //     this.setState({ searchResults: Store.ForSearcher.getResults() });
-  //   }
-
-  //   _newAccount() {
-  //     this.setState({ creationStatus: Store.ForCreator.newCreation() });
-  //   }
+  _getCustomerData() {
+    this.setState({ customers: ForCustomers.getData() });
+  }
+  _getVehicleData() {
+    this.setState({ vehicles: ForVehicles.getData() });
+  }
+  _getApplicationData() {
+    this.setState({ applications: ForApplications.getData() });
+  }
 }
