@@ -38,17 +38,8 @@ class StoreForApplications extends EventEmitter {
   emitChange() {
     this.emit(CHANGE);
   }
-  getAll() {
-    return _applications.allApplications;
-  }
-  newApplication() {
-    return _applications.creationStatus;
-  }
-  updateApplication() {
-    return _applications.updateStatus;
-  }
-  deleteApplication() {
-    return _applications.deleteStatus;
+  getData() {
+    return _applications;
   }
 
   resetReadState(section) {
